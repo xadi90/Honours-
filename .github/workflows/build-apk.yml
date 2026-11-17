@@ -5,6 +5,9 @@ on:
     branches: [ "main", "master" ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,20 +16,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
 
-      - name: Accept Android SDK licenses
-        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
+      - name: Install Android 36.1 SDK and Build Tools
+        run: |
+          yes | sdkmanager --licenses > /dev/null 2>&1 || true
+          sdkmanager --install "platforms;android-36.1" "build-tools;36.0.0" "platform-tools"
 
-      - name: Restore debug keystore
-        run: base64 -d debug.keystore.base64 > debug.keystore
+      - name: Restore or generate debug keystore
+        run: |
+          if [ -s debug.keystore.base64 ]; then
+            base64 -d debug.keystore.base64 > debug.keystore
+          else
+            keytool -genkey -v -keystore debug.keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US"
+          fi
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -34,10 +44,15 @@ jobs:
           gradle-version: '9.3.1'
 
       - name: Build Debug APK
-        run: gradle :app:assembleDebug
+        run: gradle :app:assembleDebug --no-daemon --stacktrace
 
-      - name: Upload Debug APK Artifact
-        uses: actions/upload-artifact@v4
+      - name: Prepare Direct APK File
+        run: cp app/build/outputs/apk/debug/app-debug.apk HonoursSolution.apk
+
+      - name: Publish Direct APK to GitHub Releases (No ZIP)
+        uses: softprops/action-gh-release@v2
         with:
-          name: honours-solution-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          tag_name: latest-apk
+          name: Honours Solution APK (Direct Download)
+          body: "Direct APK download (No ZIP). Tap HonoursSolution.apk below to download and install directly on Android."
+          files: HonoursSolution.apk
