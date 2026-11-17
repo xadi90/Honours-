@@ -62,3 +62,13 @@ jobs:
           name: Honours Solution APK (Direct Download)
           body: "Direct APK download (No ZIP). Tap HonoursSolution.apk below to download and install directly on Android."
           files: HonoursSolution.apk
+
+      - name: Add Direct APK Download Link to Actions Summary
+        run: |
+          {
+            echo "### 📱 Direct APK Download (No ZIP)"
+            echo ""
+            echo "👉 **[Download HonoursSolution.apk Directly](https://github.com/${{ github.repository }}/releases/download/latest-apk/HonoursSolution.apk)**"
+            echo ""
+            echo "অথবা [GitHub Releases পেইজ দেখুন](https://github.com/${{ github.repository }}/releases/tag/latest-apk)"
+          } >> "$GITHUB_STEP_SUMMARY"
