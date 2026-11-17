@@ -2,5 +2,7 @@
   "name": "Honours Solution",
   "description": "AI-powered National University Bangladesh Political Science Honours educational app with chapter-wise notes, previous questions, MCQ exams, study planner, and multimodal AI Question Solver.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }
