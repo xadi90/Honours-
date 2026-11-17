@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Honours Solution</string>
+    <string name="app_subtitle_bn">অনার্স রাষ্ট্রবিজ্ঞান সম্পূর্ণ সমাধান</string>
+    <string name="splash_tagline">আপনার অনার্স পড়াশোনার নির্ভরযোগ্য সঙ্গী</string>
+    <string name="university_name">National University, Bangladesh</string>
+    <string name="department_name">Political Science (রাষ্ট্রবিজ্ঞান)</string>
+    <string name="developer_name">Xadi Ahmed</string>
+    <string name="developer_phone">01878864913</string>
+    <string name="developer_email">xadiahmed23@gmail.com</string>
+    <string name="ai_solver_title">AI Question Solver</string>
+    <string name="ai_solver_subtitle">আপনার পড়াশোনার যেকোনো প্রশ্নের সমাধান পান AI-এর মাধ্যমে।</string>
+    <string name="suggestion_disclaimer">সতর্কীকরণ: সাজেশনসমূহ কেবল পরীক্ষার প্রস্তুতিতে সহায়তার জন্য; এগুলো চূড়ান্ত পরীক্ষার প্রশ্নপত্রের নিশ্চয়তা প্রদান করে না।</string>
+    <string name="nav_home">হোম</string>
+    <string name="nav_subjects">বিষয়</string>
+    <string name="nav_ai_solver">AI সমাধান</string>
+    <string name="nav_study">পড়াশোনা</string>
+    <string name="nav_profile">প্রোফাইল</string>
+    <string name="exit_confirm_title">অ্যাপ থেকে বের হবেন?</string>
+    <string name="exit_confirm_message">আপনি কি Honours Solution বন্ধ করতে চান?</string>
+    <string name="action_exit">বের হন</string>
+    <string name="action_cancel">বাতিল</string>
+    <string name="action_retry">পুনরায় চেষ্টা</string>
+    <string name="action_close">বন্ধ করুন</string>
+    <string name="action_go_back">ফিরে যান</string>
+</resources>
