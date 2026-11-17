@@ -49,6 +49,12 @@ jobs:
       - name: Prepare Direct APK File
         run: cp app/build/outputs/apk/debug/app-debug.apk HonoursSolution.apk
 
+      - name: Upload APK to Actions Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: honours-solution-debug-apk
+          path: HonoursSolution.apk
+
       - name: Publish Direct APK to GitHub Releases (No ZIP)
         uses: softprops/action-gh-release@v2
         with:
